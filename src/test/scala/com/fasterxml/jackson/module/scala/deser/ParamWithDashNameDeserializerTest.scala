@@ -3,8 +3,6 @@ package com.fasterxml.jackson.module.scala.deser
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 object ParamWithDashNameDeserializerTest {
   case class AnnotatedOptionLong(@JsonDeserialize(contentAs = classOf[java.lang.Long]) valueLong: Option[Long])
@@ -16,7 +14,7 @@ object ParamWithDashNameDeserializerTest {
   case class AnnotatedOptionLongWithDashButChangeToCamelCase(@JsonProperty("value-long") @JsonDeserialize(contentAs = classOf[java.lang.Long]) valueLong: Option[Long])
 }
 
-@RunWith(classOf[JUnitRunner])
+
 class ParamWithDashNameDeserializerTest extends DeserializerTest {
   lazy val module: DefaultScalaModule.type = DefaultScalaModule
   import ParamWithDashNameDeserializerTest._

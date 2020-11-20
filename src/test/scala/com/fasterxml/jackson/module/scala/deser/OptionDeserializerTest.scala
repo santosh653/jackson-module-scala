@@ -1,13 +1,10 @@
 package com.fasterxml.jackson.module.scala.deser
 
-import com.fasterxml.jackson.annotation.{JsonSetter, JsonSubTypes, JsonTypeInfo, JsonTypeName, Nulls}
+import com.fasterxml.jackson.annotation._
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.annotation.meta.field
-import scala.collection.Map
 
 case class UnavailableField(foo: Option[String])
 case class JavaOptionalWrapper(o: java.util.Optional[String])
@@ -36,7 +33,7 @@ object OptionDeserializerTest {
   case class Wrapper[T](t: T)
 }
 
-@RunWith(classOf[JUnitRunner])
+
 class OptionDeserializerTest extends DeserializerTest {
   import OptionDeserializerTest._
   lazy val module: DefaultScalaModule.type = DefaultScalaModule

@@ -4,13 +4,11 @@ import com.fasterxml.jackson.annotation._
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.fasterxml.jackson.module.scala.deser.EitherJsonTest.{BaseHolder, EitherField, Impl, PlainPojoObject}
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.annotation.meta.field
 import scala.util.Random
 
-@RunWith(classOf[JUnitRunner])
+
 class EitherDeserializerTest extends DeserializerTest with EitherJsonTestSupport {
 
   val module = DefaultScalaModule

@@ -6,12 +6,10 @@ import com.fasterxml.jackson.core.`type`.TypeReference
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
 import com.fasterxml.jackson.module.scala.JacksonModule
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.collection.immutable
 
-@RunWith(classOf[JUnitRunner])
+
 class SortedMapDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = new SortedMapDeserializerModule {}
@@ -27,7 +25,6 @@ class SortedMapDeserializerTest extends DeserializerTest {
   }
 
   it should "deserialize an object into a mutable SortedMap" in {
-    import overrides._
     val result = deserialize[SortedMap[String,String]](mapJson)
     result should equal (mapScala)
   }
@@ -38,7 +35,6 @@ class SortedMapDeserializerTest extends DeserializerTest {
   }
 
   it should "deserialize an object into a mutable TreeMap" in {
-    import overrides._
     val result = deserialize[TreeMap[String,String]](mapJson)
     result should equal (mapScala)
   }

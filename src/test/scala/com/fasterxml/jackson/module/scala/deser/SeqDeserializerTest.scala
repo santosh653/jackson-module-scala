@@ -6,15 +6,13 @@ import com.fasterxml.jackson.annotation.{JsonSetter, Nulls}
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, JacksonModule}
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.collection.{immutable, mutable}
 
 case class JavaListWrapper(s: java.util.ArrayList[String])
 case class SeqWrapper(s: Seq[String])
 
-@RunWith(classOf[JUnitRunner])
+
 class SeqDeserializerTest extends DeserializerTest {
 
   lazy val module = new JacksonModule with SeqDeserializerModule
@@ -50,13 +48,11 @@ class SeqDeserializerTest extends DeserializerTest {
   }
 
   it should "deserialize a list into a LazyList" in {
-    import overrides._
     val result = deserialize[LazyList[Int]](listJson)
     result should equal (listScala)
   }
 
   it should "deserialize a list into an immutable LazyList" in {
-    import overrides._
     val result = deserialize[LazyList[Int]](listJson)
     result should equal (listScala)
   }
@@ -132,7 +128,6 @@ class SeqDeserializerTest extends DeserializerTest {
   }
 
   it should "deserialize a list into a mutable ArrayDeque" in {
-    import overrides._
     val result = deserialize[ArrayDeque[Int]](listJson)
     result should equal (listScala)
   }
@@ -153,13 +148,11 @@ class SeqDeserializerTest extends DeserializerTest {
   }
 
   it should "deserialize a list into a mutable MutableList" in {
-    import overrides._
     val result = deserialize[MutableList[Int]](listJson)
     result should equal (listScala)
   }
 
   it should "deserialize a list into a mutable ResizableArray" in {
-    import overrides._
     val result = deserialize[ResizableArray[Int]](listJson)
     result should equal (listScala)
   }

@@ -4,18 +4,16 @@ import java.util.UUID
 
 import com.fasterxml.jackson.annotation.{JsonSetter, Nulls}
 import com.fasterxml.jackson.core.`type`.TypeReference
-import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
+import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, JacksonModule}
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.collection._
 
 case class JavaMapWrapper(m: java.util.HashMap[String, String])
 case class MapWrapper(m: Map[String, String])
 
-@RunWith(classOf[JUnitRunner])
+
 class UnsortedMapDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = new UnsortedMapDeserializerModule {}
@@ -66,7 +64,6 @@ class UnsortedMapDeserializerTest extends DeserializerTest {
   }
 
   it should "deserialize an object into a concurrent TrieMap" in {
-    import overrides._
     val result = deserialize[TrieMap[String, String]](mapJson)
     result should equal (mapScala)
   }

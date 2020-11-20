@@ -4,12 +4,10 @@ import java.util.UUID
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import com.fasterxml.jackson.module.scala.JacksonModule
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.collection.{immutable, mutable}
 
-@RunWith(classOf[JUnitRunner])
+
 class UnsortedSetDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = new UnsortedSetDeserializerModule {}

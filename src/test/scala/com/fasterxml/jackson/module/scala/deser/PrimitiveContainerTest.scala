@@ -2,8 +2,6 @@ package com.fasterxml.jackson.module.scala.deser
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 object PrimitiveContainerTest {
 
@@ -16,7 +14,7 @@ object PrimitiveContainerTest {
   case class AnnotatedHashValueLong(@JsonDeserialize(contentAs = classOf[java.lang.Long]) value: Map[String, Long])
 }
 
-@RunWith(classOf[JUnitRunner])
+
 class PrimitiveContainerTest extends DeserializationFixture
 {
   import PrimitiveContainerTest._

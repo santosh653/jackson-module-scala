@@ -3,10 +3,8 @@ package com.fasterxml.jackson.module.scala.deser
 import com.fasterxml.jackson.databind.`type`.MapLikeType
 import com.fasterxml.jackson.databind.{AbstractTypeResolver, DeserializationConfig, JavaType, ObjectMapper}
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, JacksonModule, ScalaObjectMapper}
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
+
 class UntypedObjectDeserializerTest extends DeserializerTest {
   def module: JacksonModule = DefaultScalaModule
 

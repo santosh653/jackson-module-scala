@@ -5,9 +5,7 @@ name := "jackson-module-scala"
 
 organization := "com.fasterxml.jackson.module"
 
-scalaVersion := "2.13.4"
-
-crossScalaVersions := Seq("2.11.12", "2.12.12", "2.13.4")
+scalaVersion := "3.0.0-M1"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
@@ -26,7 +24,8 @@ scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 //scalacOptions in (Compile, compile) += "-Xfatal-warnings"
 
 unmanagedSourceDirectories in Compile += {
-  (baseDirectory in LocalRootProject).value / "src" / "main" / s"scala-2.${scalaMajorVersion.value}"
+  val suffix = if (scalaMajorVersion.value >= 13 || isDotty.value) 13 else scalaMajorVersion.value
+  (baseDirectory in LocalRootProject).value / "src" / "main" / s"scala-2.${suffix}"
 }
 
 val jacksonVersion = "2.12.0-SNAPSHOT"
@@ -48,9 +47,7 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.datatype" % "jackson-datatype-guava" % jacksonVersion % Test,
   "com.fasterxml.jackson.module" % "jackson-module-jsonSchema" % jacksonJsonSchemaVersion % Test,
   "io.swagger" % "swagger-core" % "1.6.2" % Test,
-  "org.scalatest" %% "scalatest" % "3.2.3" % Test,
-  "org.scalatestplus" %% "junit-4-12" % "3.2.2.0" % Test,
-  "junit" % "junit" % "4.13.1" % Test
+  "org.scalatest" %% "scalatest" % "3.2.3" % Test
 )
 
 // build.properties

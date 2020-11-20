@@ -4,10 +4,8 @@ import java.lang.reflect.Member
 
 import com.fasterxml.jackson.module.scala.BaseSpec
 import com.fasterxml.jackson.module.scala.introspect.BeanIntrospectorTest.DecodedNameMatcher
-import org.junit.runner.RunWith
-import org.scalatest.matchers.{HavePropertyMatchResult, HavePropertyMatcher}
+import org.scalatest.matchers.HavePropertyMatcher
 import org.scalatest.{Inside, LoneElement, OptionValues}
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.reflect.NameTransformer
 
@@ -78,7 +76,7 @@ object BeanIntrospectorTest {
   }
 }
 
-@RunWith(classOf[JUnitRunner])
+
 class BeanIntrospectorTest extends BaseSpec with Inside with LoneElement with OptionValues with DecodedNameMatcher {
   import BeanIntrospectorTest._
 
