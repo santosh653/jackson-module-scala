@@ -1,11 +1,12 @@
 package com.fasterxml.jackson.module.scala
 
-import java.io.{ByteArrayInputStream, InputStreamReader}
-
+import java.io.{ByteArrayInputStream, File, InputStreamReader}
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
 import com.fasterxml.jackson.annotation.JsonView
 import com.fasterxml.jackson.core.TreeNode
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
-import com.fasterxml.jackson.databind.{JsonMappingException, ObjectMapper}
+import com.fasterxml.jackson.databind.{JsonMappingException, Module, ObjectMapper}
 
 import scala.collection.JavaConverters._
 
@@ -40,11 +41,10 @@ private class Target {
 private class Mixin(val foo: String)
 private case class GenericTestClass[T](t: T)
 
+class ScalaObjectMapperTest extends JacksonTest {
 
-class ScalaObjectMapperTest extends BaseSpec {
-
-  val mapper = new ObjectMapper with ScalaObjectMapper
-  mapper.registerModule(DefaultScalaModule)
+  def module: Module = DefaultScalaModule
+  val mapper = newMapperWithScalaObjectMapper
 
   "An ObjectMapper with the ScalaObjectMapper mixin" should "add mixin annotations" in {
     mapper.addMixin[Target, Mixin]()
@@ -87,6 +87,20 @@ class ScalaObjectMapperTest extends BaseSpec {
   it should "know if it can deserialize a deserializable type" in {
     val result = mapper.canDeserialize[Target]
     result should equal(mapper.canDeserialize(mapper.constructType(classOf[Target])))
+  }
+
+  it should "read value from file" in {
+    withFile(genericJson) { file =>
+      val result = mapper.readValue[GenericTestClass[Int]](file)
+      result should equal(genericInt)
+    }
+  }
+
+  it should "read value from URL" in {
+    withFile(genericJson) { file =>
+      val result = mapper.readValue[GenericTestClass[Int]](file.toURI.toURL)
+      result should equal(genericInt)
+    }
   }
 
   it should "read value from string" in {
@@ -209,9 +223,48 @@ class ScalaObjectMapperTest extends BaseSpec {
     result(1) should equal(None)
   }
 
+  it should "update value from file" in {
+    withFile(toplevelArrayJson) { file =>
+      val result = mapper.updateValue(List.empty[GenericTestClass[Int]], file)
+      result should equal(listGenericInt)
+    }
+  }
+
+  it should "update value from URL" in {
+    withFile(toplevelArrayJson) { file =>
+      val result = mapper.updateValue(List.empty[GenericTestClass[Int]], file.toURI.toURL)
+      result should equal(listGenericInt)
+    }
+  }
+
+  it should "update value from string" in {
+    val result = mapper.updateValue(List.empty[GenericTestClass[Int]], toplevelArrayJson)
+    result should equal(listGenericInt)
+  }
+
+  it should "update value from Reader" in {
+    val reader = new InputStreamReader(new ByteArrayInputStream(toplevelArrayJson.getBytes))
+    val result = mapper.updateValue(List.empty[GenericTestClass[Int]], reader)
+    result should equal(listGenericInt)
+  }
+
+  it should "update value from stream" in {
+    val stream = new ByteArrayInputStream(toplevelArrayJson.getBytes)
+    val result = mapper.updateValue(List.empty[GenericTestClass[Int]], stream)
+    result should equal(listGenericInt)
+  }
+
+  it should "update value from byte array" in {
+    val result = mapper.updateValue(List.empty[GenericTestClass[Int]], toplevelArrayJson.getBytes)
+    result should equal(listGenericInt)
+  }
+
+  it should "update value from subset of byte array" in {
+    val result = mapper.updateValue(List.empty[GenericTestClass[Int]], toplevelArrayJson.getBytes, 0, toplevelArrayJson.length)
+    result should equal(listGenericInt)
+  }
+
   // No tests for the following functions:
-  //  def readValue[T: Manifest](src: File): T
-  //  def readValue[T: Manifest](src: URL): T
   //  def acceptJsonFormatVisitor[T: Manifest](visitor: JsonFormatVisitorWrapper): Unit
 
   private val genericJson = """{"t":42}"""
@@ -222,4 +275,18 @@ class ScalaObjectMapperTest extends BaseSpec {
   private val genericMixedFieldJson = """{"first":"firstVal","second":2}"""
   private val toplevelArrayJson = """[{"t":42},{"t":31}]"""
   private val toplevelOptionArrayJson = """["some",null]"""
+
+  private def withFile[T](contents: String)(body: File => T): T = {
+    val file = File.createTempFile("jackson_scala_test", getClass.getSimpleName)
+    try {
+      Files.write(file.toPath, contents.getBytes(StandardCharsets.UTF_8))
+      body(file)
+    } finally {
+      try {
+        file.delete()
+      } catch {
+        case _: Exception => // ignore
+      }
+    }
+  }
 }

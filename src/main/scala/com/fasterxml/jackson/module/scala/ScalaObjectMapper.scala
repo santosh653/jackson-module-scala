@@ -7,6 +7,13 @@ import com.fasterxml.jackson.core.{JsonParser, TreeNode}
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema
 import com.fasterxml.jackson.databind._
+import com.fasterxml.jackson.databind.json.JsonMapper
+
+object ScalaObjectMapper {
+  def ::(o: JsonMapper) = new Mixin(o)
+  final class Mixin private[ScalaObjectMapper](mapper: JsonMapper)
+    extends JsonMapper(mapper.rebuild().build()) with ScalaObjectMapper
+}
 
 trait ScalaObjectMapper {
   self: ObjectMapper =>
@@ -67,7 +74,7 @@ trait ScalaObjectMapper {
         throw new IllegalArgumentException("Need exactly 2 type parameters for map like types ("+clazz.getName+")")
       }
       getTypeFactory.constructMapLikeType(clazz, typeArguments(0), typeArguments(1))
-    } else if (isReference(clazz)) { // Option is a subclss of IterableOnce, so check it first
+    } else if (isReference(clazz)) { // Option is a subclass of IterableOnce, so check it first
       val typeArguments = m.typeArguments.map(constructType(_)).toArray
       if (typeArguments.length != 1) {
         throw new IllegalArgumentException("Need exactly 1 type parameter for reference types ("+clazz.getName+")")
@@ -205,6 +212,38 @@ trait ScalaObjectMapper {
 
   def readValue[T: Manifest](src: Array[Byte], offset: Int, len: Int): T = {
     readValue(src, offset, len, constructType[T])
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, src: File): T = {
+    objectReaderFor(valueToUpdate).readValue(src)
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, src: URL): T = {
+    objectReaderFor(valueToUpdate).readValue(src)
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, content: String): T = {
+    objectReaderFor(valueToUpdate).readValue(content)
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, src: Reader): T = {
+    objectReaderFor(valueToUpdate).readValue(src)
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, src: InputStream): T = {
+    objectReaderFor(valueToUpdate).readValue(src)
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, src: Array[Byte]): T = {
+    objectReaderFor(valueToUpdate).readValue(src)
+  }
+
+  def updateValue[T: Manifest](valueToUpdate: T, src: Array[Byte], offset: Int, len: Int): T = {
+    objectReaderFor(valueToUpdate).readValue(src, offset, len)
+  }
+
+  private def objectReaderFor[T: Manifest](valueToUpdate: T): ObjectReader = {
+    readerForUpdating(valueToUpdate).forType(constructType[T])
   }
 
   /*

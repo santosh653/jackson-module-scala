@@ -5,7 +5,7 @@ name := "jackson-module-scala"
 
 organization := "com.fasterxml.jackson.module"
 
-scalaVersion := "3.0.0-M1"
+scalaVersion := "3.0.0-M2"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
@@ -28,8 +28,8 @@ unmanagedSourceDirectories in Compile += {
   (baseDirectory in LocalRootProject).value / "src" / "main" / s"scala-2.${suffix}"
 }
 
-val jacksonVersion = "2.12.0-SNAPSHOT"
-val jacksonJsonSchemaVersion = "2.12.0-rc2"
+val jacksonVersion = "2.12.1-SNAPSHOT"
+val jacksonJsonSchemaVersion = "2.12.0"
 
 libraryDependencies ++= Seq(
     "com.fasterxml.jackson.core" % "jackson-core" % jacksonVersion,
@@ -43,11 +43,11 @@ libraryDependencies ++= Seq(
   }
 } ++ Seq(
   // test dependencies
-  "com.fasterxml.jackson.datatype" % "jackson-datatype-joda" % jacksonVersion % Test,
-  "com.fasterxml.jackson.datatype" % "jackson-datatype-guava" % jacksonVersion % Test,
-  "com.fasterxml.jackson.module" % "jackson-module-jsonSchema" % jacksonJsonSchemaVersion % Test,
-  "io.swagger" % "swagger-core" % "1.6.2" % Test,
-  "org.scalatest" %% "scalatest" % "3.2.3" % Test
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-joda" % jacksonVersion % Test,
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-guava" % jacksonVersion % Test,
+    "com.fasterxml.jackson.module" % "jackson-module-jsonSchema" % jacksonJsonSchemaVersion % Test,
+    "io.swagger" % "swagger-core" % "1.6.2" % Test,
+    "org.scalatest" %% "scalatest" % "3.2.3" % Test
 )
 
 // build.properties
