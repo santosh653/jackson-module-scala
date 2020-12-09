@@ -19,7 +19,7 @@ scalaMajorVersion := {
   }
 }
 
-scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
+scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-Ytasty-reader")
 
 // Temporarily disable warnings as error since SerializationFeature.WRITE_NULL_MAP_VALUES has been deprecated
 // and we use it.
@@ -49,6 +49,7 @@ libraryDependencies ++= Seq(
     "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % jacksonVersion % Test,
     "com.fasterxml.jackson.module" % "jackson-module-jsonSchema" % jacksonJsonSchemaVersion % Test,
     "io.swagger" % "swagger-core" % "1.6.2" % Test,
+    "com.github.pjfanning" % "scala3-sample-classes_3.0.0-M1" % "0.1.0-SNAPSHOT" % Test changing(),
     "org.scalatest" %% "scalatest" % "3.2.3" % Test,
     "org.scalatestplus" %% "junit-4-13" % "3.2.3.0" % Test,
     "junit" % "junit" % "4.13.1" % Test
