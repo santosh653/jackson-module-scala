@@ -15,4 +15,12 @@ class Scala3Test extends BaseSpec {
     model.name shouldEqual "name"
     model.desc shouldEqual Some("desc")
   }
+  "An ObjectMapper" should "deserialize a Scala3 case object" in {
+    val mapper = new ObjectMapper
+    mapper.registerModule(new DefaultScalaModule)
+    val json = """{"field1":"name","field2":50}"""
+    val model = mapper.readValue(json, com.github.pjfanning.scala3.Scala3CaseObject.getClass)
+    model.field1 shouldEqual "name"
+    model.field2 shouldEqual 50
+  }
 }

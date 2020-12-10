@@ -15,12 +15,11 @@ class Scala3Test extends BaseSpec {
     json should include(""""name":"name"""")
     json should include(""""desc":"desc"""")
   }
-  "An ObjectMapper" should "serialize a Scala3 class" in {
+  "An ObjectMapper" should "serialize a Scala3 case object" in {
     val mapper = new ObjectMapper
     mapper.registerModule(new DefaultScalaModule)
-// following does not compile:
-//    val json = mapper.writeValueAsString(com.github.pjfanning.scala3.Scala3CaseObject)
-//    json should include(""""field1":"test"""")
-//    json should include(""""field2":42""")
+    val json = mapper.writeValueAsString(com.github.pjfanning.scala3.Scala3CaseObject)
+    json should include(""""field1":"test"""")
+    json should include(""""field2":42""")
   }
 }
