@@ -2,6 +2,7 @@ package com.fasterxml.jackson.module.scala.deser
 
 import com.fasterxml.jackson.annotation._
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
 
 import scala.annotation.meta.field
@@ -94,6 +95,7 @@ class OptionDeserializerTest extends DeserializerTest {
   it should "handle AS_NULL" in {
     val mapper = new ObjectMapper
     mapper.registerModule(new DefaultScalaModule)
+    mapper.registerModule(new Jdk8Module())
     mapper.setDefaultSetterInfo(JsonSetter.Value.forValueNulls(Nulls.AS_EMPTY))
     val json = """{"o": null}"""
     val result1 = mapper.readValue(json, classOf[JavaOptionalWrapper])
