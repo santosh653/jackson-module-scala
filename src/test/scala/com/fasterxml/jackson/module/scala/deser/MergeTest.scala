@@ -3,8 +3,6 @@ package com.fasterxml.jackson.module.scala.deser
 import com.fasterxml.jackson.annotation.JsonMerge
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
 
 import scala.collection.{Map, mutable}
 
@@ -14,7 +12,6 @@ case class ClassWithMutableMaps[T](field1: mutable.Map[String, T], @JsonMerge fi
 
 case class Pair(first: String, second: String)
 
-@RunWith(classOf[JUnitRunner])
 class MergeTest extends DeserializerTest {
 
   val module: DefaultScalaModule.type = DefaultScalaModule
