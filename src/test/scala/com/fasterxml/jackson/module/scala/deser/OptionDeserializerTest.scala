@@ -3,7 +3,7 @@ package com.fasterxml.jackson.module.scala.deser
 import com.fasterxml.jackson.annotation._
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
-import com.fasterxml.jackson.module.scala.{DefaultScalaModule, ScalaObjectMapper}
+import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
 import scala.annotation.meta.field
 
@@ -83,12 +83,7 @@ class OptionDeserializerTest extends DeserializerTest {
 
   it should "deserialize a type param wrapped option" in {
     val json: String = """{"t": {"bar": "baz"}}"""
-    var result = deserialize[Wrapper[Option[Foo]]](json)
-    result.t.get.isInstanceOf[Foo] should be(true)
-
-    val m = new ObjectMapper with ScalaObjectMapper
-    m.registerModule(DefaultScalaModule)
-    result = m.readValue[Wrapper[Option[Foo]]](json)
+    val result = deserialize[Wrapper[Option[Foo]]](json)
     result.t.get.isInstanceOf[Foo] should be(true)
   }
 
