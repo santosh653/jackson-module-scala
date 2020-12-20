@@ -3,7 +3,7 @@ package com.fasterxml.jackson.module.scala.introspect
 import java.lang.reflect.Member
 import com.fasterxml.jackson.module.scala.BaseSpec
 import com.fasterxml.jackson.module.scala.introspect.BeanIntrospectorTest.DecodedNameMatcher
-import org.scalatest.matchers.HavePropertyMatcher
+import org.scalatest.matchers.{HavePropertyMatcher, HavePropertyMatchResult}
 import org.scalatest.{Inside, LoneElement, OptionValues}
 
 import scala.reflect.NameTransformer
