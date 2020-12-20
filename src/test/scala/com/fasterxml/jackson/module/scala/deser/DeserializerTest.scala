@@ -11,6 +11,9 @@ trait DeserializerTest extends JacksonTest {
 
   def serialize(o: AnyRef): String = deserializerMapper.writeValueAsString(o)
 
+  def deserialize[T](value: String, typeReference: TypeReference[T]): T =
+    deserializerMapper.readValue(value, typeReference)
+
   def deserialize[T](value: String, clazz: Class[T]): T =
     deserializerMapper.readValue(value, clazz)
 
@@ -28,7 +31,7 @@ trait DeserializerTest extends JacksonTest {
     deserializerMapper.readValue(value, typeReference(pt))
   }
 
-  @deprecated("need to stop using manifests because they are not supported in Scala3")
+  @deprecated("need to stop using manifests because they are not supported in Scala3", "2.12.1")
   def deserializeWithManifest[T: Manifest](value: String) : T =
     deserializerMapper.readValue(value, typeReference[T])
 
