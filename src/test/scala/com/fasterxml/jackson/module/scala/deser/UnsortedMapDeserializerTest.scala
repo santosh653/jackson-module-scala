@@ -13,7 +13,6 @@ case class JavaMapWrapper(m: java.util.HashMap[String, String])
 case class MapWrapper(m: Map[String, String])
 object StringMapTypeReference extends TypeReference[Map[String, String]]
 
-
 class UnsortedMapDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = new UnsortedMapDeserializerModule {}
