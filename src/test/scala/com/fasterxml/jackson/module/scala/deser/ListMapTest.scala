@@ -11,7 +11,6 @@ import scala.collection.immutable.{ListMap, Queue, TreeMap}
 // taken from https://github.com/dejanlokar1/serialization_problem/blob/master/src/test/scala/SerializationTest.scala
 // test for https://github.com/FasterXML/jackson-databind/issues/2422
 
-
 class ListMapTest extends BaseSpec with TableDrivenPropertyChecks {
   private val mapper = {
     val _mapper = new ObjectMapper

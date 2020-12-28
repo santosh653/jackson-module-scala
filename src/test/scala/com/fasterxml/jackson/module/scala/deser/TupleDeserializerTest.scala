@@ -15,7 +15,6 @@ case class TupleValueLong(long: Long) extends TupleValueBase
 case class TupleValueString(string: String) extends TupleValueBase
 case class TupleContainer(tuple: (TupleValueBase,TupleValueBase))
 
-
 class TupleDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = DefaultScalaModule

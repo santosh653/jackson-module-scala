@@ -2,7 +2,6 @@ package com.fasterxml.jackson.module.scala.deser
 
 import com.fasterxml.jackson.module.scala.JacksonModule
 
-
 class SymbolDeserializerTest extends DeserializerTest {
   lazy val module = new JacksonModule with SymbolDeserializerModule
 

@@ -2,7 +2,6 @@ package com.fasterxml.jackson.module.scala.ser
 
 import com.fasterxml.jackson.module.scala.JacksonModule
 
-
 class TupleSerializerTest extends SerializerTest {
   lazy val module = new JacksonModule with TupleSerializerModule
 

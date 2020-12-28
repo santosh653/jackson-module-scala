@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
 private case class OptionalInt(x: Option[Int])
 
-
 class OptionWithJodaTimeDeserializerTest extends DeserializerTest {
 
   def module: DefaultScalaModule.type = DefaultScalaModule

@@ -36,7 +36,6 @@ case class Person(name: String, @JsonIgnore location: Address, alias: Option[Str
   }
 }
 
-
 class UnwrappedTest extends BaseSpec {
 
   "mapper" should "handle ignored fields correctly" in {

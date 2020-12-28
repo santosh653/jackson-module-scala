@@ -39,7 +39,6 @@ object CaseClassDeserializerTest
   case class ArrayHolder(value: Array[Byte])
 }
 
-
 class CaseClassDeserializerTest extends DeserializerTest {
   import com.fasterxml.jackson.module.scala.deser.CaseClassDeserializerTest._
 

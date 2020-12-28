@@ -15,7 +15,6 @@ object PrimitiveContainerTest {
   case class AnnotatedHashValueLong(@JsonDeserialize(contentAs = classOf[java.lang.Long]) value: Map[String, Long])
 }
 
-
 class PrimitiveContainerTest extends DeserializationFixture
 {
   import PrimitiveContainerTest._

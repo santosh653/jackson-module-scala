@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.scala.deser.EitherJsonTest.{BaseHolder, Impl
 import com.fasterxml.jackson.module.scala.deser.EitherJsonTestSupport
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, JacksonModule}
 
-
 class EitherSerializerTest extends SerializerTest with EitherJsonTestSupport {
 
   val module: JacksonModule = DefaultScalaModule

@@ -51,7 +51,6 @@ object CreatorTest
 }
 
 
-
 class CreatorTest extends DeserializationFixture {
   import CreatorTest._
 

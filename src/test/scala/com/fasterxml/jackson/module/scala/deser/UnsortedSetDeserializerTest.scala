@@ -8,7 +8,6 @@ import com.fasterxml.jackson.module.scala.JacksonModule
 
 import scala.collection.{immutable, mutable}
 
-
 class UnsortedSetDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = new UnsortedSetDeserializerModule {}

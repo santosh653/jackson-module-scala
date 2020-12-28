@@ -15,7 +15,6 @@ class PojoWrittenInScala {
   @BeanProperty var fooBar: String = ""
 }
 
-
 class NamingStrategyTest extends FixtureAnyFlatSpec with Matchers {
 
   type FixtureParam = ObjectMapper

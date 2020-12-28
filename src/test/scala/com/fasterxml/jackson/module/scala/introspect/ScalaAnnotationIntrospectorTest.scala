@@ -28,7 +28,6 @@ object ScalaAnnotationIntrospectorTest {
   }
 }
 
-
 class ScalaAnnotationIntrospectorTest extends FixtureAnyFlatSpec with Matchers {
   import ScalaAnnotationIntrospectorTest._
 

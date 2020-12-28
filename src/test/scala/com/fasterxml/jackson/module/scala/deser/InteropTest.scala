@@ -32,7 +32,6 @@ object Util {
   def fromJson(str:String): B = mapper.readValue(str,classOf[B])
 }
 
-
 class InteropTest extends BaseSpec
 {
   "Scala module" should "support JsonDeserialize in Scala" in {

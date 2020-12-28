@@ -7,7 +7,6 @@ case object CaseObjectExample {
   val field2: Int = 42
 }
 
-
 class CaseObjectSerializerTest extends SerializerTest {
 
   def module = DefaultScalaModule

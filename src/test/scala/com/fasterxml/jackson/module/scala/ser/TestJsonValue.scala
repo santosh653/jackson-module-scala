@@ -10,7 +10,6 @@ object TestJsonValue {
   case class ValueClass(@(JsonValue @getter) value: String)
 }
 
-
 class TestJsonValue extends SerializerTest {
   import TestJsonValue._
 

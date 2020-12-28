@@ -57,7 +57,6 @@ trait M2
 case class F2(label: String) extends M2
 case class C2(m: Option[M2])
 
-
 class OptionSerializerTest extends SerializerTest {
   import OptionSerializerTest._
 

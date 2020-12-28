@@ -50,7 +50,6 @@ case class MapValueDouble(value: Double) extends MapValueBase
 case class MapValueString(value: String) extends MapValueBase
 
 
-
 class MapSerializerTest extends SerializerTest {
 
   lazy val module: JacksonModule = DefaultScalaModule

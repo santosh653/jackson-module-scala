@@ -16,7 +16,6 @@ object SortedSetDeserializerTest {
   }
 }
 
-
 class SortedSetDeserializerTest extends DeserializationFixture {
   import SortedSetDeserializerTest._
 

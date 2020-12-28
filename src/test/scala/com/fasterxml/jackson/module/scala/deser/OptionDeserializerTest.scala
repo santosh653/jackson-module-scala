@@ -35,7 +35,6 @@ object OptionDeserializerTest {
   case class Wrapper[T](t: T)
 }
 
-
 class OptionDeserializerTest extends DeserializerTest {
   import OptionDeserializerTest._
   lazy val module: DefaultScalaModule.type = DefaultScalaModule

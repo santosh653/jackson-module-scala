@@ -12,7 +12,6 @@ import scala.collection.{immutable, mutable}
 case class JavaListWrapper(s: java.util.ArrayList[String])
 case class SeqWrapper(s: Seq[String])
 
-
 class SeqDeserializerTest extends DeserializerTest {
 
   lazy val module = new JacksonModule with SeqDeserializerModule

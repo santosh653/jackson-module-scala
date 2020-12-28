@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.scala.{DefaultScalaModule, JacksonModule}
 
 import scala.util.Success
 
-
 class TrySerializerTest extends SerializerTest {
 
   val module: JacksonModule = DefaultScalaModule

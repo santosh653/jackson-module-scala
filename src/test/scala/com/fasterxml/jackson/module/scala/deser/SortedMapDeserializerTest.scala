@@ -9,7 +9,6 @@ import com.fasterxml.jackson.module.scala.JacksonModule
 
 import scala.collection.immutable
 
-
 class SortedMapDeserializerTest extends DeserializerTest {
 
   lazy val module: JacksonModule = new SortedMapDeserializerModule {}

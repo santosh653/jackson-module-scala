@@ -7,7 +7,6 @@ import com.google.common.collect.Multimap
 
 class PojoWithMultiMap(val headers: Multimap[String, String])
 
-
 class GuavaModuleTest extends BaseSpec {
   "Scala module" should "work with GuavaModule (Scala registered second)" in {
     val objectMapper = new ObjectMapper

@@ -15,7 +15,6 @@ object ParamWithDashNameDeserializerTest {
   case class AnnotatedOptionLongWithDashButChangeToCamelCase(@JsonProperty("value-long") @JsonDeserialize(contentAs = classOf[java.lang.Long]) valueLong: Option[Long])
 }
 
-
 class ParamWithDashNameDeserializerTest extends DeserializerTest {
   lazy val module: DefaultScalaModule.type = DefaultScalaModule
   import ParamWithDashNameDeserializerTest._

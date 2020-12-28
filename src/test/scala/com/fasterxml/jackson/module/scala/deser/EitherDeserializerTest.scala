@@ -9,7 +9,6 @@ import com.fasterxml.jackson.module.scala.deser.EitherJsonTest.{BaseHolder, Eith
 import scala.annotation.meta.field
 import scala.util.Random
 
-
 class EitherDeserializerTest extends DeserializerTest with EitherJsonTestSupport {
 
   override val module = DefaultScalaModule

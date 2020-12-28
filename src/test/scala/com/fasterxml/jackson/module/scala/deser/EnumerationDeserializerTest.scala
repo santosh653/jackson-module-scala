@@ -28,7 +28,6 @@ object EnumerationDeserializerTest  {
   class HolderImpl extends BeanPropertyEnumMapHolder
 }
 
-
 class EnumerationDeserializerTest extends DeserializerTest {
   import com.fasterxml.jackson.module.scala.deser.EnumerationDeserializerTest._
 

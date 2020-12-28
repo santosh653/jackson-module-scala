@@ -29,7 +29,6 @@ object EnumerationSerializerTest {
   )
 }
 
-
 class EnumerationSerializerTest extends SerializerTest {
 
   import EnumerationSerializerTest._

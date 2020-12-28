@@ -75,7 +75,6 @@ object BeanIntrospectorTest {
   }
 }
 
-
 class BeanIntrospectorTest extends BaseSpec with Inside with LoneElement with OptionValues with DecodedNameMatcher {
   import BeanIntrospectorTest._
 

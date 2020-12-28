@@ -24,7 +24,6 @@ class Dog {
 }
 
 // Cribbed from the same named test in jackson-databind
-
 class TestInnerClass extends DeserializerTest {
 
   def module: JacksonModule = DefaultScalaModule

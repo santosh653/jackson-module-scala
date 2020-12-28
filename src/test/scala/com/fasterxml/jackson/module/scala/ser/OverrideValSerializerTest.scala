@@ -4,7 +4,6 @@ import java.util.UUID
 
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
-
 class OverrideValSerializerTest extends SerializerTest {
   lazy val module = DefaultScalaModule
 

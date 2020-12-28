@@ -30,7 +30,6 @@ object IterableSerializerTest {
 
 }
 
-
 class IterableSerializerTest extends SerializerTest {
 
   import IterableSerializerTest._

@@ -20,7 +20,6 @@ object TransientFieldTest {
   }
 }
 
-
 class TransientFieldTest extends SerializerTest {
   import TransientFieldTest._
 

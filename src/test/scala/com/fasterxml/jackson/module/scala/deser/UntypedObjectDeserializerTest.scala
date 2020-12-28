@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.`type`.MapLikeType
 import com.fasterxml.jackson.databind.{AbstractTypeResolver, DeserializationConfig, JavaType, ObjectMapper}
 import com.fasterxml.jackson.module.scala.{DefaultScalaModule, JacksonModule}
 
-
 class UntypedObjectDeserializerTest extends DeserializerTest {
   def module: JacksonModule = DefaultScalaModule
 
