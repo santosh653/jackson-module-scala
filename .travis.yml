@@ -13,22 +13,56 @@ matrix:
     - scala: 2.11.12
       jdk: openjdk8
       env: SONATYPE_PUBLISH=true
+      arch: amd64
     # Scala 2.12+ only supports JDK 8+
     - scala: 2.12.12
       jdk: openjdk8
       env: SONATYPE_PUBLISH=true
+      arch: amd64
     - scala: 2.12.12
       jdk: openjdk11
       env: SONATYPE_PUBLISH=false
+      arch: amd64
     - scala: 2.13.4
       jdk: openjdk8
       env: SONATYPE_PUBLISH=true
+      arch: amd64
     - scala: 2.13.4
       jdk: openjdk11
       env: SONATYPE_PUBLISH=false
+      arch: amd64
     - scala: 2.13.4
       jdk: openjdk15
-      env: SONATYPE_PUBLISH=false      
+      env: SONATYPE_PUBLISH=false
+      arch: amd64
+      
+    
+    # Test Scala 2.11 with JDK 8 (jackson3 does not support older JDKs)
+    - scala: 2.11.12
+      jdk: openjdk8
+      env: SONATYPE_PUBLISH=true
+      arch: ppc64le
+    # Scala 2.12+ only supports JDK 8+
+    - scala: 2.12.12
+      jdk: openjdk8
+      env: SONATYPE_PUBLISH=true
+      arch: ppc64le
+    - scala: 2.12.12
+      jdk: openjdk11
+      env: SONATYPE_PUBLISH=false
+      arch: ppc64le
+    - scala: 2.13.4
+      jdk: openjdk8
+      env: SONATYPE_PUBLISH=true
+      arch: ppc64le
+    - scala: 2.13.4
+      jdk: openjdk11
+      env: SONATYPE_PUBLISH=false
+      arch: ppc64le
+    - scala: 2.13.4
+      jdk: openjdk15
+      env: SONATYPE_PUBLISH=false
+      arch: ppc64le
 
 after_success:
   - >
